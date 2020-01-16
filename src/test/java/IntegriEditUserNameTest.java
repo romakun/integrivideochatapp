@@ -26,8 +26,7 @@ public class IntegriEditUserNameTest {
         driver.findElement(By.xpath("//input[@name='userName']")).sendKeys("Raman");
         driver.findElement(By.xpath("//button[contains(@class, 'integri-user-settings-save')]")).click();
         wait.until(ExpectedConditions.textToBe(By.xpath("//div[contains(@class, 'integri-session-user-name')]"), "Raman"));
-        driver.findElement(By.xpath("//div[contains(@class, 'integri-session-user-name')]")).getText();
-        assertEquals(driver.findElement(By.xpath("//div[contains(@class, 'integri-session-user-name')]")).getText(), "Raman", "Имя пользователя не совпадает с ожидаемым");
+        assertEquals(driver.findElement(By.xpath("//div[contains(@class, 'integri-session-user-name')]")).getText(), "Ramashka", "Имя пользователя не совпадает с ожидаемым");
         driver.quit();
     }
 }

@@ -28,9 +28,9 @@ public class IntegriCopyCodeTest {
 
         driver.findElement(By.xpath("//code[@class='component-code']")).click();
         String data = (String) Toolkit.getDefaultToolkit().getSystemClipboard().getData(DataFlavor.stringFlavor);
-
+        String expectedData =  driver.findElement(By.xpath("//code[@class='component-code']")).getText();
         //из-за br тут не проходит проверку, уже засыпал ничего не придумал
-        assertEquals(driver.findElement(By.xpath("//code[@class='component-code']")).getText(), data, "Сообщение не найдено");
+        assertEquals(data, expectedData, "Скопированный текст не соответствует тексту на сайте");
 
         driver.quit();
 
