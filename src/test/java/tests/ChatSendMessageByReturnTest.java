@@ -16,4 +16,5 @@ public class ChatSendMessageByReturnTest extends BaseTest {
         chat.sendMessageByReturn(message);
         chat.messageShouldContainText(message, 1);
     }
+
 }
