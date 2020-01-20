@@ -1,7 +1,8 @@
-package tests;
+package tests.chat;
 
 import org.testng.annotations.Test;
-import pages.IntegriChatPage;
+import pages.chat.IntegriChatPage;
+import tests.BaseTest;
 
 public class ChatSendMessageByButtonTest extends BaseTest {
 

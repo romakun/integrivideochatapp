@@ -1,9 +1,10 @@
-package tests;
+package tests.chat;
 
 import org.testng.annotations.Test;
-import pages.IntegriChatPage;
+import pages.chat.IntegriChatPage;
+import tests.BaseTest;
 
-public class ChatEditMessageWithoutTextTest extends BaseTest {
+public class ChatEditMessageTest extends BaseTest {
 
     IntegriChatPage chat;
 
@@ -16,6 +17,7 @@ public class ChatEditMessageWithoutTextTest extends BaseTest {
         chat.sendMessageByReturn(message);
         chat.messageShouldContainText(message, 1);
         chat.clickEditIcon(1);
-        chat.clearEditionArea();
+        chat.typeTextInEditArea("Bla Bla", 1);
+        chat.messageShouldContainText("Bla Bla World!", 1);
     }
 }

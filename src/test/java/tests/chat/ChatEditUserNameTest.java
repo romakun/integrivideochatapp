@@ -1,8 +1,9 @@
-package tests;
+package tests.chat;
 
 import org.testng.annotations.Test;
-import pages.IntegriChatPage;
-import pages.IntegriSettingsModal;
+import pages.chat.IntegriChatPage;
+import pages.chat.IntegriSettingsModal;
+import tests.BaseTest;
 
 public class ChatEditUserNameTest extends BaseTest {
 

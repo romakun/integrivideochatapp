@@ -1,8 +1,9 @@
-package tests;
+package tests.chat;
 
 import org.testng.annotations.Test;
-import pages.IntegriChatPage;
-import pages.IntegriUploadModal;
+import pages.chat.IntegriChatPage;
+import pages.chat.IntegriUploadModal;
+import tests.BaseTest;
 
 public class ChatUploadFileTest extends BaseTest {
 

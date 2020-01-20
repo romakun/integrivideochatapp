@@ -1,4 +1,4 @@
-package pages;
+package pages.login;
 
 import models.User;
 import org.openqa.selenium.By;
@@ -8,6 +8,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import pages.BasePage;
 
 public class SignUpPage extends BasePage {
     @FindBy(name = "email")
@@ -46,4 +47,5 @@ public class SignUpPage extends BasePage {
         signUpForm.submit();
         return this;
     }
+
 }

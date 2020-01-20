@@ -1,13 +1,11 @@
-package tests;
+package tests.chat;
 
 import org.testng.annotations.Test;
-import pages.IntegriChatPage;
-import pages.IntegriSettingsModal;
+import pages.chat.IntegriChatPage;
+import pages.chat.IntegriSettingsModal;
+import tests.BaseTest;
 
-import java.awt.datatransfer.UnsupportedFlavorException;
-import java.io.IOException;
-
-public class ChatEditUserEmailTest extends BaseTest {
+public class ChatEditUserImageTest extends BaseTest {
 
     IntegriChatPage chat;
     IntegriSettingsModal settings;
@@ -19,8 +17,8 @@ public class ChatEditUserEmailTest extends BaseTest {
 
         chat.openPage();
         chat.clickSettingButton();
-        settings.editEmail("gotestweb@gmail.com");
+        settings.editImageLink("https://tinyjpg.com/images/social/website.jpg");
         settings.clickSave();
-
+        chat.checkImageEdition();
     }
 }

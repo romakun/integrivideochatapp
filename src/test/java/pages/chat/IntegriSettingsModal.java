@@ -1,7 +1,8 @@
-package pages;
+package pages.chat;
 
 import org.openqa.selenium.*;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import pages.BasePage;
 
 import java.awt.*;
 import java.awt.datatransfer.DataFlavor;

@@ -1,8 +1,9 @@
-package tests;
+package tests.login;
 
-import models.User;
-import org.testng.annotations.Test;
-import pages.SignUpPage;
+        import models.User;
+        import org.testng.annotations.Test;
+        import pages.login.SignUpPage;
+        import tests.BaseTest;
 
 public class SignUpTest extends BaseTest {
 

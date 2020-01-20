@@ -1,9 +1,10 @@
-package tests;
+package tests.chat;
 
 import org.testng.annotations.Test;
-import pages.IntegriChatPage;
+import pages.chat.IntegriChatPage;
+import tests.BaseTest;
 
-public class ChatSendMessageByReturnTest extends BaseTest {
+public class ChatSendElevenMessagesTest extends BaseTest {
 
     IntegriChatPage chat;
 
@@ -13,8 +14,6 @@ public class ChatSendMessageByReturnTest extends BaseTest {
         chat = new IntegriChatPage(driver);
 
         chat.openPage();
-        chat.sendMessageByReturn(message);
-        chat.messageShouldContainText(message, 1);
+        chat.sendMoreMessages(message,11);
     }
-
 }

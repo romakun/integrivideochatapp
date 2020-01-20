@@ -1,22 +1,20 @@
-package tests;
+package tests.chat;
 
 import org.testng.annotations.Test;
-import pages.IntegriChatPage;
+import pages.chat.IntegriChatPage;
+import tests.BaseTest;
 
-public class ChatEditMessageTest extends BaseTest {
+public class ChatSendMessageWithCodeTest extends BaseTest {
 
     IntegriChatPage chat;
 
     @Test
     public void integriChatSendMessage(){
-        String message = "Hello World!";
+        String message = "<html><body><p>test</p></body></html>";
         chat = new IntegriChatPage(driver);
 
         chat.openPage();
         chat.sendMessageByReturn(message);
         chat.messageShouldContainText(message, 1);
-        chat.clickEditIcon(1);
-        chat.typeTextInEditArea("Bla Bla", 1);
-        chat.messageShouldContainText("Bla Bla World!", 1);
     }
 }
