@@ -10,6 +10,7 @@ import java.io.IOException;
 import java.util.List;
 import java.util.Random;
 import java.util.concurrent.TimeUnit;
+import java.util.regex.Pattern;
 
 
 import static org.testng.Assert.assertEquals;
@@ -63,10 +64,13 @@ public class IntegriChatPage extends BasePage {
         wait.until(ExpectedConditions.numberOfElementsToBeMoreThan(EDIT_AREA, messageNumber - 1));
     }
 
-    public void typeTextInEditArea(String message, int messageNumber, String edition) {
+    public void typeTextInEditArea(String edition, int messageNumber) {
         List<WebElement> editAreas = driver.findElements(EDIT_AREA);
+        for(int i = 0; i < 5; i++){
+            editAreas.get(messageNumber - 1).sendKeys(Keys.DELETE);
+        }
         editAreas.get(messageNumber - 1).sendKeys(edition, Keys.RETURN);
-        wait.until(ExpectedConditions.textToBe(MESSAGE_TEXT, edition + message));
+        wait.until(ExpectedConditions.textToBe(MESSAGE_TEXT, "Bla Bla World!"));
 
     }
 
@@ -76,7 +80,11 @@ public class IntegriChatPage extends BasePage {
 
     public void codeCopiedToClipboard() throws IOException, UnsupportedFlavorException {
         String data = (String) Toolkit.getDefaultToolkit().getSystemClipboard().getData(DataFlavor.stringFlavor);
-        assertEquals(data, driver.findElement(By.xpath("//code[@class='component-code']")).getText(), "Скопированный текст не соответствует тексту на сайте");
+
+        String expectedData = driver.findElement(By.xpath("//code[@class='component-code']")).getText();
+        expectedData = expectedData.replaceAll("\n", "");
+        assertEquals(data, expectedData, "Скопированный текст не соответствует тексту на сайте");
+
     }
 
     public void deleteMessage(int messageNumber){

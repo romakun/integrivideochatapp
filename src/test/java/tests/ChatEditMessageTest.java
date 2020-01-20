@@ -16,7 +16,7 @@ public class ChatEditMessageTest extends BaseTest {
         chat.sendMessageByReturn(message);
         chat.messageShouldContainText(message, 1);
         chat.clickEditIcon(1);
-        chat.typeTextInEditArea(message, 1,"Bla Bla");
-        chat.messageShouldContainText("Bla Bla" + message, 1);
+        chat.typeTextInEditArea("Bla Bla", 1);
+        chat.messageShouldContainText("Bla Bla World!", 1);
     }
 }
