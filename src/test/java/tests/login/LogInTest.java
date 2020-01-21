@@ -4,6 +4,7 @@ import models.User;
 import org.testng.annotations.Test;
 import pages.login.LogInPage;
 import pages.login.SignUpPage;
+import pages.project.ProjectPage;
 import tests.BaseTest;
 
 public class LogInTest extends BaseTest {
@@ -27,6 +28,9 @@ public class LogInTest extends BaseTest {
                 .logIn(admin)
                 .checkAlertUserNotFound()
                 .logIn(validUser);
-
+        new ProjectPage(driver)
+                .isPageLoaded()
+                .clickLogOut()
+                .checkCurrentUrl("https://dev.integrivideo.com/");
     }
 }
