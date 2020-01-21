@@ -3,7 +3,6 @@ package tests.login;
 import models.User;
 import org.testng.annotations.Test;
 import pages.login.LogInPage;
-import pages.login.SignUpPage;
 import pages.project.ProjectPage;
 import tests.BaseTest;
 
@@ -11,26 +10,29 @@ public class LogInTest extends BaseTest {
 
     @Test
     public void LogIn(){
-        User fillUser = new User("", "");
+        User emptyUser = new User("", "");
         User withoutPass = new User("gotestweb@mailinator.com", "");
         User withoutEmail = new User("", "12345678");
         User admin = new User("admin@admin.com", "admin");
         User validUser = new User("gotestweb@mailinator.com", "12345678");
+        String alertMissingCredentials = "Missing credentials";
+        String alertUserNotFound = "Error: User is not found";
 
         new LogInPage(driver)
                 .openPage()
-                .logIn(fillUser)
-                .checkAlertMissingCredentials()
+                .logIn(emptyUser)
+                .checkAlert(alertMissingCredentials)
                 .logIn(withoutPass)
-                .checkAlertMissingCredentials()
+                .checkAlert(alertMissingCredentials)
                 .logIn(withoutEmail)
-                .checkAlertMissingCredentials()
+                .checkAlert(alertMissingCredentials)
                 .logIn(admin)
-                .checkAlertUserNotFound()
-                .logIn(validUser);
+                .checkAlert(alertUserNotFound)
+                .logIn(validUser)
+                .checkCurrentUrl("https://dev.integrivideo.com/app/projects");
         new ProjectPage(driver)
-                .isPageLoaded()
-                .clickLogOut()
+                .openPage()
+                .clickLogOutButton()
                 .checkCurrentUrl("https://dev.integrivideo.com/");
     }
 }

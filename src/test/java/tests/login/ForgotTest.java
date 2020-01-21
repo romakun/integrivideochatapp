@@ -14,6 +14,8 @@ public class ForgotTest extends BaseTest {
         User fillEmail = new User("", "");
         User noExistEmail = new User("totoshka@mail.ru", "");
         User existEmail = new User("gotestweb@mailinator.com", "");
+        String alertWrongEmail = "Wrong email. Please ensure that you use correct email address";
+        String alertInstructionsSent = "Message with instructions was sent";
 
         new LogInPage(driver)
                 .openPage()
@@ -22,11 +24,11 @@ public class ForgotTest extends BaseTest {
         new ForgotPage(driver)
                 .openPage()
                 .recoveryPassword(fillEmail)
-                .checkAlertWrongEmail()
+                .checkAlert(alertWrongEmail)
                 .recoveryPassword(noExistEmail)
-                .checkAlertWrongEmail()
+                .checkAlert(alertWrongEmail)
                 .recoveryPassword(existEmail)
-                .checkAlertInstructionsSend()
+                .checkAlert(alertInstructionsSent)
                 .goToLogInPage()
                 .checkCurrentUrl("https://dev.integrivideo.com/login");
     }

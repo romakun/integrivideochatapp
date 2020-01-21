@@ -21,62 +21,39 @@ public class LogInPage extends BasePage {
     WebElement passwordInput;
     @FindBy(id = "login-form")
     WebElement LogInForm;
-    @FindBy(xpath = "//span[@data-notify='message']")
-    WebElement alertMessage;
     @FindBy(className = "forgot")
     WebElement forgotLink;
 
+    private By ALERT_MESSAGE = By.xpath("//span[@data-notify='message']");
 
     public LogInPage(WebDriver driver) {
         super(driver);
     }
 
-    public LogInPage openPage(){
+    public LogInPage openPage() {
         driver.get("https://dev.integrivideo.com/login");
-        isPageLoaded();
+        isPageLoaded(By.id("login-form"));
         PageFactory.initElements(driver, LogInPage.this);
         return this;
     }
 
-    public void isPageLoaded(){
-
-        try {
-            wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("login-form")));
-        } catch (TimeoutException ex) {
-            System.out.println("Page no load");
-            throw new TimeoutException("Page no load");
-        }
-    }
-
-    public LogInPage logIn(User user){
-
+    public LogInPage logIn(User user) {
         emailInput.sendKeys(user.getEmail());
         passwordInput.sendKeys(user.getPassword());
         LogInForm.submit();
         return this;
-
     }
 
-
-    public LogInPage checkAlertMissingCredentials(){
-        assertTrue(wait.until(ExpectedConditions.textToBePresentInElement(alertMessage,"Missing credentials")), "Alert not found");
-        wait.until(ExpectedConditions.invisibilityOfElementWithText(By.xpath("//span[@data-notify='message']"), "Missing credentials"));
+    public LogInPage checkAlert(String alertMessage) {
+        waitAlertIsPresent(ALERT_MESSAGE);
+        assertEquals(driver.findElement(ALERT_MESSAGE).getText(), alertMessage, "Wrong alert message");
+        wait.until(ExpectedConditions.invisibilityOf(driver.findElement(ALERT_MESSAGE)));
         return this;
     }
 
-    public LogInPage checkAlertUserNotFound(){
-        assertTrue(wait.until(ExpectedConditions.textToBePresentInElement(alertMessage,"Error: User is not found")), "Alert not found");
-        wait.until(ExpectedConditions.invisibilityOfElementWithText(By.xpath("//span[@data-notify='message']"), "Error: User is not found"));
-        return this;
-    }
-
-    public LogInPage goToForgotPage(){
+    public LogInPage goToForgotPage() {
         forgotLink.click();
         return this;
-    }
-
-    public void checkCurrentUrl(String url){
-        assertEquals(driver.getCurrentUrl(), url, "Not Expected URL");
     }
 
 }

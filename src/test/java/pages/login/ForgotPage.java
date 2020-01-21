@@ -19,31 +19,19 @@ public class ForgotPage extends BasePage{
     WebElement emailInput;
     @FindBy(className = "display-center")
     WebElement recoveryButton;
-    @FindBy(xpath = "//span[@data-notify='message']")
-    WebElement alertMessage;
     @FindBy(linkText = "Log in")
     WebElement logInLink;
 
-
+    private By ALERT_MESSAGE = By.xpath("//span[@data-notify='message']");
 
     public ForgotPage(WebDriver driver) {
         super(driver);
     }
 
     public ForgotPage openPage(){
-        isPageLoaded();
+        isPageLoaded(By.className("display-center"));
         PageFactory.initElements(driver, ForgotPage.this);
         return this;
-    }
-
-    public void isPageLoaded(){
-
-        try {
-            wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("display-center")));
-        } catch (TimeoutException ex) {
-            System.out.println("Page no load");
-            throw new TimeoutException("Page no load");
-        }
     }
 
     public ForgotPage recoveryPassword(User user){
@@ -52,15 +40,10 @@ public class ForgotPage extends BasePage{
         return this;
     }
 
-    public ForgotPage checkAlertWrongEmail(){
-        assertTrue(wait.until(ExpectedConditions.textToBePresentInElement(alertMessage,"Wrong email. Please ensure that you use correct email address")), "Alert not found");
-        wait.until(ExpectedConditions.invisibilityOfElementWithText(By.xpath("//span[@data-notify='message']"), "Wrong email. Please ensure that you use correct email address"));
-        return this;
-    }
-
-    public ForgotPage checkAlertInstructionsSend(){
-        assertTrue(wait.until(ExpectedConditions.textToBePresentInElement(alertMessage,"Message with instructions was sent")), "Alert not found");
-        wait.until(ExpectedConditions.invisibilityOfElementWithText(By.xpath("//span[@data-notify='message']"), "Message with instructions was sent"));
+    public ForgotPage checkAlert(String alertMessage){
+        waitAlertIsPresent(ALERT_MESSAGE);
+        assertEquals(driver.findElement(ALERT_MESSAGE).getText(), alertMessage, "Wrong alert message");
+        wait.until(ExpectedConditions.invisibilityOf(driver.findElement(ALERT_MESSAGE)));
         return this;
     }
 
@@ -68,10 +51,5 @@ public class ForgotPage extends BasePage{
         logInLink.click();
         return this;
     }
-
-    public void checkCurrentUrl(String url){
-        assertEquals(driver.getCurrentUrl(), url, "Not Expected URL");
-    }
-
 
 }
