@@ -55,5 +55,4 @@ public class LogInPage extends BasePage {
         forgotLink.click();
         return this;
     }
-
 }
