@@ -27,6 +27,7 @@ public class AddProjectComponentTest extends BaseTest {
                 .openPage()
                 .chooseComponent(componentName[0])
                 .fillInComponentName("Chatik")
+                .saveComponent()
                 .saveComponent();
     }
 }

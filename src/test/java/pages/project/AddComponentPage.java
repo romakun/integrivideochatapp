@@ -38,7 +38,8 @@ public class AddComponentPage  extends BasePage{
         return this;
     }
 
-    public void saveComponent(){
+    public AddComponentPage saveComponent(){
         createButton.submit();
+        return this;
     }
 }
