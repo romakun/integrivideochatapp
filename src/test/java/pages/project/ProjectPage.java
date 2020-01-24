@@ -11,7 +11,6 @@ import pages.BasePage;
 import java.util.List;
 import java.util.Random;
 
-
 public class ProjectPage extends BasePage {
     @FindBy(xpath = "//a[text()='Logout']")
     WebElement logOutButton;
