@@ -5,9 +5,10 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
-import org.openqa.selenium.support.ui.ExpectedConditions;
 import pages.BasePage;
-import static org.testng.Assert.assertEquals;
+
+import java.util.List;
+
 
 
 public class ProjectPage extends BasePage {
@@ -19,6 +20,8 @@ public class ProjectPage extends BasePage {
     WebElement projectsButton;
     @FindBy(xpath = "//div[text()='Add project']")
     WebElement addProject;
+
+    private By PROJECTS = By.xpath("//div[@class='project']");
 
 
     public ProjectPage(WebDriver driver) {
@@ -47,8 +50,14 @@ public class ProjectPage extends BasePage {
         return this;
     }
 
-    public ProjectPage clickAddProjectButton() {
+    public int clickAddProjectButton() {
+        int projectsCount = checkProjectsCount();
         addProject.click();
-        return this;
+        return projectsCount;
+    }
+
+    public int checkProjectsCount(){
+        List<WebElement> projects = driver.findElements(PROJECTS);
+        return projects.size();
     }
 }
