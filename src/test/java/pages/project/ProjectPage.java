@@ -11,8 +11,6 @@ import pages.BasePage;
 import java.util.List;
 import java.util.Random;
 
-import static org.testng.Assert.assertEquals;
-
 
 public class ProjectPage extends BasePage {
     @FindBy(xpath = "//a[text()='Logout']")
@@ -27,12 +25,15 @@ public class ProjectPage extends BasePage {
     WebElement nameProjectInput;
     @FindBy(xpath = "//textarea[@placeholder='Type here...']")
     WebElement descriptionProjectInput;
+    @FindBy(xpath = "//div[text()='Add new component']")
+    WebElement addNewComponentButton;
 
     private By SAVE_PROJECT_DATA_BUTTON = By.xpath("//form[@ajax-form]");
     private By DOMAINS_INPUT = By.name("domains[]");
     private By PROJECTS = By.xpath("//div[@class='project']");
     private By EDIT_PROJECT_DATA = By.xpath("//a[text()='Edit']");
     private By REMOVE_DOMAIN_BUTTON = By.className("remove-domain");
+
 
 
     public ProjectPage(WebDriver driver) {
@@ -132,6 +133,10 @@ public class ProjectPage extends BasePage {
     public void deleteDomainName(int domainNumber) {
         List<WebElement> domainList = driver.findElements(REMOVE_DOMAIN_BUTTON);
         domainList.get(domainNumber - 1).click();
+    }
+
+    public void goToAddNewComponents(){
+        addNewComponentButton.click();
     }
 
 }
