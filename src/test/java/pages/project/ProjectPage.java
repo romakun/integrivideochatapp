@@ -69,8 +69,7 @@ public class ProjectPage extends BasePage {
 
     public int checkProjectsCount() {
         List<WebElement> projects = driver.findElements(PROJECTS);
-        int projectsCount = projects.size();
-        return projectsCount;
+        return projects.size();
     }
 
     public void fillInProjectData(Project project, int domainsCount) {
