@@ -3,7 +3,6 @@ package pages.login;
 import io.qameta.allure.Step;
 import models.User;
 import org.openqa.selenium.By;
-import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -14,7 +13,7 @@ import utils.AllureUtils;
 
 
 import static org.testng.Assert.assertEquals;
-import static org.testng.Assert.assertTrue;
+
 
 public class LogInPage extends BasePage {
     @FindBy(name = "email")
@@ -47,6 +46,7 @@ public class LogInPage extends BasePage {
         passwordInput.sendKeys(user.getPassword());
         AllureUtils.takeScreenshot(driver);
         LogInForm.submit();
+        AllureUtils.takeScreenshot(driver);
         return this;
     }
 
@@ -55,7 +55,6 @@ public class LogInPage extends BasePage {
         waitAlertIsPresent(ALERT_MESSAGE);
         assertEquals(driver.findElement(ALERT_MESSAGE).getText(), alertMessage, "Wrong alert message");
         wait.until(ExpectedConditions.invisibilityOf(driver.findElement(ALERT_MESSAGE)));
-        AllureUtils.takeScreenshot(driver);
         return this;
     }
 

@@ -14,7 +14,7 @@ import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertTrue;
 
 
-public class ForgotPage extends BasePage{
+public class ForgotPage extends BasePage {
     @FindBy(name = "email")
     WebElement emailInput;
     @FindBy(className = "display-center")
@@ -28,28 +28,27 @@ public class ForgotPage extends BasePage{
         super(driver);
     }
 
-    public ForgotPage openPage(){
+    public ForgotPage openPage() {
         isPageLoaded(By.className("display-center"));
         PageFactory.initElements(driver, ForgotPage.this);
         return this;
     }
 
-    public ForgotPage recoveryPassword(User user){
+    public ForgotPage recoveryPassword(User user) {
         emailInput.sendKeys(user.getEmail());
         recoveryButton.submit();
         return this;
     }
 
-    public ForgotPage checkAlert(String alertMessage){
+    public ForgotPage checkAlert(String alertMessage) {
         waitAlertIsPresent(ALERT_MESSAGE);
         assertEquals(driver.findElement(ALERT_MESSAGE).getText(), alertMessage, "Wrong alert message");
         wait.until(ExpectedConditions.invisibilityOf(driver.findElement(ALERT_MESSAGE)));
         return this;
     }
 
-    public ForgotPage goToLogInPage(){
+    public ForgotPage goToLogInPage() {
         logInLink.click();
         return this;
     }
-
 }

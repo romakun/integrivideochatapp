@@ -14,9 +14,9 @@ public class LogInTest extends BaseTest {
 
     @Test(description = "Login in integrivideo app")
     @Description("Validation of login functionality in Integry video app")
-    @Link("https://instagram.com/dmitryrak11")
-    @Issue("dmitryrak11")
-    @TmsLink("dmitryrak11")
+    @Link("https://instagram.com/roma.kun.xx")
+    @Issue("roma.kun.xx")
+    @TmsLink("roma.kun.xx")
     public void LogInTest() {
         steps.LogIn();
     }

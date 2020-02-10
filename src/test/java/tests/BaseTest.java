@@ -6,6 +6,7 @@ import org.openqa.selenium.chrome.ChromeOptions;
 import steps.LoginSteps;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
+import utils.CapabilitiesGenerator;
 
 public class BaseTest {
 
@@ -14,10 +15,7 @@ public class BaseTest {
 
     @BeforeMethod(description = "Opening Chrome Driver")
     public void setUp(){
-        System.setProperty("webdriver.chrome.driver", "src/test/resources/webdrivers/chromedriver.exe");
-        ChromeOptions options = new ChromeOptions();
-        options.addArguments("--start-maximized");
-        driver = new ChromeDriver(options);
+        driver = new ChromeDriver(CapabilitiesGenerator.getChromeOptions());
         steps = new LoginSteps(driver);
     }
 
